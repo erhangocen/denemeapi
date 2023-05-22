@@ -6,25 +6,30 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Post {
-  id                 String    @id @default(cuid())
-  title              String
-  description        String   
-  image              String
-  categoryId         String
-  category           Category @relation(fields: [categoryId], references: [id])
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
 
-  @@unique([categoryId])
+  @@index([categoryId])
 }
 
 model Category {
-  id                 String    @id @default(cuid())
-  title              String
-  posts              Post[]
+  id    String @id @default(cuid())
+  title String
+  posts Post[]
 }
 
+model Teacher {
+  id         String @id @default(cuid())
+  name       String
+  department String
+}

@@ -4,9 +4,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
+    const {name, department} = req.body;
+
     try{
-        const responseData = await db.post.findMany({include:{category:true}});
-        return res.status(200).json({"data": responseData});
+        await db.teacher.create({
+            data:{
+                name:name,
+                department: department
+            },
+        })
+        return res.status(200).json({"success": "true"});
     }catch (error){
         return res.status(500).json({error:error})
     }
