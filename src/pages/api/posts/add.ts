@@ -6,11 +6,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { type } from "os";
 import { any, z } from "zod";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {categoryId,title,image,description} = req.body;
 
     try{
+        var a = await db.category.findFirst({where:{id:categoryId}})
+        if(a == null){
+            return res.status(400).json({"error":"this category is not exist"})
+        }
         await db.post.create({
             data:{
                 categoryId: categoryId,
@@ -24,3 +28,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({error:error})
     }
 }
+
+export default withMethods(['POST'], handler)

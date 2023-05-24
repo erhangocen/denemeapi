@@ -1,8 +1,9 @@
+import { withMethods } from "@/lib/api-middlewares/with-methods";
 import { db } from "@/lib/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {name, department} = req.body;
 
@@ -18,3 +19,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({error:error})
     }
 }
+
+export default withMethods(['POST'], handler)

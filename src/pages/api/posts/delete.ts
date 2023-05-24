@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { type } from "os";
 import { any, z } from "zod";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {id} = req.body;
 
@@ -17,3 +17,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({error:error})
     }
 }
+
+export default withMethods(['POST'], handler)

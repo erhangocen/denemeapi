@@ -1,8 +1,9 @@
+import { withMethods } from "@/lib/api-middlewares/with-methods";
 import { db } from "@/lib/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     try{
         const a = await db.category.findMany({include:{posts:true,_count:true}});
@@ -11,3 +12,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({error:error})
     }
 }
+
+export default withMethods(['GET'], handler)
