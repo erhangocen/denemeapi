@@ -6,9 +6,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     try{
-        return res.status(400).json("bir hata gerçekleşti")
-        /* const responseData = await db.teacher.findMany();
-        return res.status(200).json(responseData); */
+        /* return res.status(400).json("bir hata gerçekleşti") */
+        const responseData = await db.teacher.findMany();
+        return res.status(200).json(responseData);
     }catch (error){
         return res.status(500).json({error:error})
     }
