@@ -1,10 +1,7 @@
 import { withMethods } from "@/lib/api-middlewares/with-methods";
 import { db } from "@/lib/db";
-import { Prisma } from "@prisma/client";
-import { error } from "console";
+import RequestMethods from "@/lib/request_methods";
 import { NextApiRequest, NextApiResponse } from "next";
-import { type } from "os";
-import { any, z } from "zod";
 
 const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
@@ -18,4 +15,4 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
-export default withMethods(['POST'], handler)
+export default withMethods([RequestMethods.POST], handler)

@@ -1,5 +1,6 @@
 import { withMethods } from "@/lib/api-middlewares/with-methods";
 import { db } from "@/lib/db";
+import RequestMethods from "@/lib/request_methods";
 import createResponseData from "@/types/ResponseModel";
 import { Prisma } from "@prisma/client";
 import { error } from "console";
@@ -7,6 +8,32 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { type } from "os";
 import { any, z } from "zod";
 
+/**
+ * @swagger
+ * /api/posts/add:
+ *     post:
+ *      tags:
+ *          - Posts
+ *      description: add teacher
+ *      requestBody:
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                     type: object
+ *                     properties:
+ *                      categoryId:
+ *                         type: string
+ *                      title:
+ *                        type: string
+ *                      image:
+ *                        type: string
+ *                      description:
+ *                        type: string
+ *      responses:
+ *          200:
+ *              description: response data
+ * 
+ */
 const handler = async(req: NextApiRequest, res: NextApiResponse) => {
 
     const {categoryId,title,image,description} = req.body;
@@ -30,4 +57,4 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
-export default withMethods(['POST'], handler)
+export default withMethods([RequestMethods.POST], handler)

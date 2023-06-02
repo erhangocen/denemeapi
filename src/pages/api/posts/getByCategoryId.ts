@@ -1,5 +1,6 @@
 import { withMethods } from "@/lib/api-middlewares/with-methods";
 import { db } from "@/lib/db";
+import RequestMethods from "@/lib/request_methods";
 import { NextApiRequest, NextApiResponse } from "next";
 
 
@@ -15,4 +16,4 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
-export default withMethods(['GET'], handler)
+export default withMethods([RequestMethods.GET], handler)
