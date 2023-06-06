@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.json({
         token: jwt.sign({ id: id }, process.env.JWT_SECRET ?? "", {
-            expiresIn: '3m',
+            expiresIn: '10d',
         }),
         refresh: jwt.sign({ id: id }, process.env.REFRESH_SECRET ?? "", {
             expiresIn: '360d',

@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const id = (decoded as any).id;
         res.status(200).json({
             token: jwt.sign({ id: id }, process.env.JWT_SECRET ?? "", {
-                expiresIn: '3m',
+                expiresIn: '10d',
             })
         })
     } catch (error) {

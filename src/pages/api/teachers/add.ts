@@ -28,23 +28,23 @@ import { NextApiRequest, NextApiResponse } from "next";
  * 
  */
 
-const handler = async(req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
-    const {name, department} = req.body;
+    const { name, department } = req.body;
 
-    try{
-        if(name == null || department == null){
-            return res.status(400).json({"error":"Name or Department can't be null"});
+    try {
+        if (name == null || department == null) {
+            return res.status(400).json({ "error": "Name or Department can't be null" });
         }
         await db.teacher.create({
-            data:{
-                name:name,
+            data: {
+                name: name,
                 department: department
             },
         })
         return res.status(200).json(createResponseData("Teacher successfully added!"));
-    }catch (error){
-        return res.status(500).json({error:error})
+    } catch (error) {
+        return res.status(500).json({ error: error })
     }
 }
 

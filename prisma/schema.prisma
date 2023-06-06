@@ -33,3 +33,9 @@ model Teacher {
   name       String
   department String
 }
+
+model User {
+  id    String @id
+  name  String
+  email String
+}
